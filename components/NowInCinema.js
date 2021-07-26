@@ -58,9 +58,9 @@ const NowInCinema = ({ data }) => {
 
 const styles = StyleSheet.create({
   slide: {
+    flex: 1,
     paddingTop: 20,
     paddingLeft: 15,
-    height: 100,
   },
   backgroundImage: {
     width: 300,

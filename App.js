@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, ScrollView, View } from 'react-native';
 import axios from 'axios';
 import NowInCinema from './components/NowInCinema';
 import ComingSoon from './components/ComingSoon';
@@ -33,14 +33,16 @@ const App = () => {
     <>
       {loading && <Spinner />}
       {!loading && (
-        <>
-          <Text style={styles.movieSectionPremiere}>Premieres</Text>
-          <Premiere data={data} />
-          <Text style={styles.movieSection}>Now in Cinema</Text>
-          <NowInCinema data={data} />
-          <Text style={styles.movieSectionSoon}>Coming Soon</Text>
-          <ComingSoon data={data} />
-        </>
+        <ScrollView style={{ flexGrow: 1 }}>
+          <View style={{ flexGrow: 1 }}>
+            <Text style={styles.movieSectionPremiere}>Premieres</Text>
+            <Premiere data={data} />
+            <Text style={styles.movieSection}>Now in Cinema</Text>
+            <NowInCinema data={data} />
+            <Text style={styles.movieSectionSoon}>Coming Soon</Text>
+            <ComingSoon data={data} />
+          </View>
+        </ScrollView>
       )}
     </>
   );
@@ -67,6 +69,7 @@ const styles = StyleSheet.create({
   movieSectionPremiere: {
     paddingTop: 40,
     paddingLeft: 15,
+    marginBottom: 30,
     fontSize: 23,
     fontWeight: 'bold',
     textAlign: 'left',
