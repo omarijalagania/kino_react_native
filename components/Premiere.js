@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Dimensions,
   TouchableOpacity,
   Platform,
@@ -11,9 +10,13 @@ import {
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 const { width: screenWidth } = Dimensions.get('window');
 
-const Premiere = ({ data }) => {
+const Premiere = ({ data, navigation }) => {
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
+
+  // const pressHandler = (id) => {
+  //   navigation.navigate('MovieFullDesc', { id });
+  // };
 
   const goForward = () => {
     carouselRef.current.snapToNext();
@@ -24,20 +27,23 @@ const Premiere = ({ data }) => {
 
   const renderItem = ({ item, index }, parallaxProps) => {
     return (
-      <View style={styles.item}>
-        <ParallaxImage
-          source={{
-            uri: `https://kinosakartvelo.ge/admin-panel/images/posters/${item.imgLandscape}`,
-          }}
-          containerStyle={styles.imageContainer}
-          style={styles.image}
-          parallaxFactor={0.4}
-          {...parallaxProps}
-        />
-        <Text style={styles.title} numberOfLines={2}>
-          {item.GEO.title}
-        </Text>
-      </View>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MovieFullDesc', { item: item })}>
+        <View style={styles.item}>
+          <ParallaxImage
+            source={{
+              uri: `https://kinosakartvelo.ge/admin-panel/images/posters/${item.imgLandscape}`,
+            }}
+            containerStyle={styles.imageContainer}
+            style={styles.image}
+            parallaxFactor={0.4}
+            {...parallaxProps}
+          />
+          <Text style={styles.title} numberOfLines={2}>
+            {item.GEO.title}
+          </Text>
+        </View>
+      </TouchableOpacity>
     );
   };
 
