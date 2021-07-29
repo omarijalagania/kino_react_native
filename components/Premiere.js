@@ -14,15 +14,15 @@ const Premiere = ({ data, navigation }) => {
   const [entries, setEntries] = useState([]);
   const carouselRef = useRef(null);
 
-  // const pressHandler = (id) => {
-  //   navigation.navigate('MovieFullDesc', { id });
-  // };
-
   const goForward = () => {
     carouselRef.current.snapToNext();
   };
   useEffect(() => {
-    setEntries(data);
+    //Premiere Filter
+    let filteredPremiere = data.filter(
+      (item) => item.movieStatus === 'premiera'
+    );
+    setEntries(filteredPremiere);
   }, []);
 
   const renderItem = ({ item, index }, parallaxProps) => {
