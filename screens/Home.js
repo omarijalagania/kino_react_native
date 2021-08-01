@@ -38,7 +38,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.movieSectionPremiere}>Premieres</Text>
             <Premiere data={data} navigation={navigation} />
             <Text style={styles.movieSection}>Now in Cinema</Text>
-            <NowInCinema data={data} />
+            <NowInCinema data={data} navigation={navigation} />
             <Text style={styles.movieSectionSoon}>Coming Soon</Text>
             <ComingSoon data={data} />
           </View>

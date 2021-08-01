@@ -54,8 +54,10 @@ const MovieFullDesc = ({ navigation }) => {
             <Text style={styles.genreCont}>
               {item.Genre.map((genre) => genre + ', ')}
             </Text>
+          </View>
+          <View>
             <View style={styles.imdbCont}>
-              <Text style={styles.genre}>{item.GEO.title}</Text>
+              <Text style={styles.genre}>{item.GEO.title.slice(0, 15)}...</Text>
               <Text style={styles.imdb}>
                 <Ionicons name='play' size={32} color='orange' /> {item.IMDB}{' '}
                 IMDB
@@ -76,21 +78,21 @@ const styles = StyleSheet.create({
   Image: {
     marginTop: -70,
     width: 400,
-    height: 400,
+    height: 350,
+
     borderRadius: 5,
     resizeMode: 'contain',
   },
   genreCont: {
-    marginTop: -80,
     paddingLeft: 10,
   },
   genre: {
-    marginTop: 5,
     fontSize: 21,
     fontWeight: 'bold',
     paddingLeft: 10,
   },
   imdbCont: {
+    marginTop: 20,
     width: screenWidth,
     flex: 1,
     flexDirection: 'row',

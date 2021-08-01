@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import StarRating from 'react-native-star-rating';
 
-const NowInCinema = ({ data }) => {
+const NowInCinema = ({ data, navigation }) => {
   const [starCount, setStarCount] = useState(0);
 
   // Star Rating Function
@@ -14,7 +14,10 @@ const NowInCinema = ({ data }) => {
   //Carousel Render Method
   const renderItem = ({ item, index }) => {
     return (
-      <View key={item.id} style={styles.slide}>
+      <TouchableOpacity
+        key={item.id}
+        style={styles.slide}
+        onPress={() => navigation.navigate('MovieFullDesc', { item: item })}>
         <Image
           style={styles.backgroundImage}
           source={{
@@ -37,7 +40,7 @@ const NowInCinema = ({ data }) => {
             selectedStar={(rating) => onStarRatingPress(rating)}
           />
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 
