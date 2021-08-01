@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  ScrollView,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import Spinner from '../components/Spinner';
 import axios from 'axios';
 
+const { width: screenWidth } = Dimensions.get('window');
 const MovieFullDesc = ({ navigation }) => {
   const [sessionData, setSessionData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,13 +37,11 @@ const MovieFullDesc = ({ navigation }) => {
 
   let item = navigation.getParam('item');
 
-  //get right movie
-  let getMovieID = sessionData.filter((item) => item.Movie_ID === item.movieID);
   return (
     <>
       {loading && <Spinner />}
       {!loading && (
-        <>
+        <ScrollView>
           <View style={styles.container}>
             <Image
               style={styles.Image}
@@ -45,11 +52,18 @@ const MovieFullDesc = ({ navigation }) => {
           </View>
           <View>
             <Text style={styles.genreCont}>
-              <Text style={styles.genre}>Genre : </Text>
               {item.Genre.map((genre) => genre + ', ')}
             </Text>
+            <View style={styles.imdbCont}>
+              <Text style={styles.genre}>{item.GEO.title}</Text>
+              <Text style={styles.imdb}>
+                <Ionicons name='play' size={32} color='orange' /> {item.IMDB}{' '}
+                IMDB
+              </Text>
+            </View>
+            <Text style={styles.description}>{item.GEO.description}</Text>
           </View>
-        </>
+        </ScrollView>
       )}
     </>
   );
@@ -71,9 +85,37 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   genre: {
-    fontSize: 20,
+    marginTop: 5,
+    fontSize: 21,
     fontWeight: 'bold',
+    paddingLeft: 10,
+  },
+  imdbCont: {
+    width: screenWidth,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  imdb: {
+    fontSize: 21,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingRight: 10,
+  },
+  description: {
+    textAlign: 'center',
+    paddingHorizontal: 20,
+    marginTop: 15,
+    fontSize: 15,
   },
 });
+
+MovieFullDesc.navigationOptions = ({ navigation }) => {
+  let item = navigation.getParam('item');
+  return {
+    headerTitle: item.GEO.title,
+  };
+};
 
 export default MovieFullDesc;
