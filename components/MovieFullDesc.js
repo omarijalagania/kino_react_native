@@ -20,7 +20,8 @@ const MovieFullDesc = ({ navigation }) => {
   const [sessionData, setSessionData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [startDate, setStartDate] = useState();
-  const [activeBtn, setActiveBtn] = useState(false);
+  const [activeBtn, setActiveBtn] = useState("");
+  const [chosenTime, setChosenTime] = useState("");
   //Api Request for sessions
   const apiCallPosters = async () => {
     try {
@@ -36,8 +37,9 @@ const MovieFullDesc = ({ navigation }) => {
     }
   };
 
-  const activeBtnHandler = (index) => {
+  const activeBtnHandler = (index, time) => {
     setActiveBtn(index);
+    setChosenTime(time);
   };
 
   useEffect(() => {
@@ -83,7 +85,7 @@ const MovieFullDesc = ({ navigation }) => {
                 return (
                   <View style={styles.btnContainer} key={session.Sessions_ID}>
                     <Button
-                      onPress={activeBtnHandler.bind(null, index)}
+                      onPress={activeBtnHandler.bind(null, index, session.Time)}
                       color={activeBtn === index ? "red" : null}
                       title={session.Time}
                     />
@@ -91,6 +93,7 @@ const MovieFullDesc = ({ navigation }) => {
                 );
               }
             })}
+            <Text>არჩეული დრო: {chosenTime}</Text>
           </View>
         </ScrollView>
       )}

@@ -13,7 +13,7 @@ function Calendar({ startDate, setStartDate }) {
 
       <View styles={styles.textChosen}>
         <Text>
-          არჩეული დრო:
+          არჩეული თარიღი:
           {moment(startDate).utc().format("DD.MM.YYYY")}
         </Text>
       </View>
