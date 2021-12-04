@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,16 +6,21 @@ import {
   Image,
   Dimensions,
   ScrollView,
-} from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Spinner from '../components/Spinner';
-import axios from 'axios';
+  Button,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import Spinner from "../components/Spinner";
+import Calendar from "./Calendar";
+import axios from "axios";
 
-const { width: screenWidth } = Dimensions.get('window');
+import moment from "moment";
+
+const { width: screenWidth } = Dimensions.get("window");
 const MovieFullDesc = ({ navigation }) => {
   const [sessionData, setSessionData] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [startDate, setStartDate] = useState();
+  const [activeBtn, setActiveBtn] = useState(false);
   //Api Request for sessions
   const apiCallPosters = async () => {
     try {
@@ -31,11 +36,15 @@ const MovieFullDesc = ({ navigation }) => {
     }
   };
 
+  const activeBtnHandler = (index) => {
+    setActiveBtn(index);
+  };
+
   useEffect(() => {
     apiCallPosters();
   }, []);
 
-  let item = navigation.getParam('item');
+  let item = navigation.getParam("item");
 
   return (
     <>
@@ -52,18 +61,36 @@ const MovieFullDesc = ({ navigation }) => {
           </View>
           <View>
             <Text style={styles.genreCont}>
-              {item.Genre.map((genre) => genre + ', ')}
+              {item.Genre.map((genre) => genre + ", ")}
             </Text>
           </View>
           <View>
             <View style={styles.imdbCont}>
               <Text style={styles.genre}>{item.GEO.title.slice(0, 15)}...</Text>
               <Text style={styles.imdb}>
-                <Ionicons name='play' size={32} color='orange' /> {item.IMDB}{' '}
+                <Ionicons name="play" size={32} color="orange" /> {item.IMDB}{" "}
                 IMDB
               </Text>
             </View>
             <Text style={styles.description}>{item.GEO.description}</Text>
+          </View>
+          <Calendar startDate={startDate} setStartDate={setStartDate} />
+          <View>
+            {sessionData.map((session, index) => {
+              if (
+                session.Date === moment(startDate).utc().format("DD.MM.YYYY")
+              ) {
+                return (
+                  <View style={styles.btnContainer} key={session.Sessions_ID}>
+                    <Button
+                      onPress={activeBtnHandler.bind(null, index)}
+                      color={activeBtn === index ? "red" : null}
+                      title={session.Time}
+                    />
+                  </View>
+                );
+              }
+            })}
           </View>
         </ScrollView>
       )}
@@ -73,7 +100,7 @@ const MovieFullDesc = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   Image: {
     marginTop: -70,
@@ -81,40 +108,46 @@ const styles = StyleSheet.create({
     height: 350,
 
     borderRadius: 5,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   genreCont: {
     paddingLeft: 10,
   },
   genre: {
     fontSize: 21,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     paddingLeft: 10,
   },
   imdbCont: {
-    marginTop: 20,
+    marginTop: 10,
     width: screenWidth,
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   imdb: {
     fontSize: 21,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingRight: 10,
   },
   description: {
-    textAlign: 'center',
+    textAlign: "center",
     paddingHorizontal: 20,
     marginTop: 15,
     fontSize: 15,
   },
+  btnContainer: {
+    padding: 5,
+  },
+  btnActive: {
+    backgroundColor: "red",
+  },
 });
 
 MovieFullDesc.navigationOptions = ({ navigation }) => {
-  let item = navigation.getParam('item');
+  let item = navigation.getParam("item");
   return {
     headerTitle: item.GEO.title,
   };
