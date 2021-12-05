@@ -7,6 +7,8 @@ import {
   Dimensions,
   ScrollView,
   Button,
+  SafeAreaView,
+  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Spinner from "../components/Spinner";
@@ -52,50 +54,74 @@ const MovieFullDesc = ({ navigation }) => {
     <>
       {loading && <Spinner />}
       {!loading && (
-        <ScrollView>
-          <View style={styles.container}>
-            <Image
-              style={styles.Image}
-              source={{
-                uri: `https://kinosakartvelo.ge/admin-panel/images/posters/${item.imgLandscape}`,
-              }}
-            />
-          </View>
-          <View>
-            <Text style={styles.genreCont}>
-              {item.Genre.map((genre) => genre + ", ")}
-            </Text>
-          </View>
-          <View>
-            <View style={styles.imdbCont}>
-              <Text style={styles.genre}>{item.GEO.title.slice(0, 15)}...</Text>
-              <Text style={styles.imdb}>
-                <Ionicons name="play" size={32} color="orange" /> {item.IMDB}{" "}
-                IMDB
+        <SafeAreaView>
+          <ScrollView>
+            <View style={styles.container}>
+              <Image
+                style={styles.Image}
+                source={{
+                  uri: `https://kinosakartvelo.ge/admin-panel/images/posters/${item.imgLandscape}`,
+                }}
+              />
+            </View>
+            <View>
+              <Text style={styles.genreCont}>
+                {item.Genre.map((genre) => genre + ", ")}
               </Text>
             </View>
-            <Text style={styles.description}>{item.GEO.description}</Text>
-          </View>
-          <Calendar startDate={startDate} setStartDate={setStartDate} />
-          <View>
-            {sessionData.map((session, index) => {
-              if (
-                session.Date === moment(startDate).utc().format("DD.MM.YYYY")
-              ) {
-                return (
-                  <View style={styles.btnContainer} key={session.Sessions_ID}>
-                    <Button
-                      onPress={activeBtnHandler.bind(null, index, session.Time)}
-                      color={activeBtn === index ? "red" : null}
-                      title={session.Time}
-                    />
-                  </View>
-                );
-              }
-            })}
-            <Text>არჩეული დრო: {chosenTime}</Text>
-          </View>
-        </ScrollView>
+            <View>
+              <View style={styles.imdbCont}>
+                <Text style={styles.genre}>
+                  {item.GEO.title.slice(0, 15)}...
+                </Text>
+                <Text style={styles.imdb}>
+                  <Ionicons name="play" size={32} color="orange" /> {item.IMDB}{" "}
+                  IMDB
+                </Text>
+              </View>
+              <Text style={styles.description}>{item.GEO.description}</Text>
+            </View>
+
+            <Calendar startDate={startDate} setStartDate={setStartDate} />
+
+            <View>
+              <View
+                style={{
+                  display: "flex",
+
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginVertical: 20,
+                }}
+              >
+                {sessionData.map((session, index) => {
+                  if (
+                    session.Date ===
+                    moment(startDate).utc().format("DD.MM.YYYY")
+                  ) {
+                    return (
+                      <SafeAreaView
+                        style={styles.btnContainer}
+                        key={session.Sessions_ID}
+                      >
+                        <Button
+                          onPress={activeBtnHandler.bind(
+                            null,
+                            index,
+                            session.Time
+                          )}
+                          color={activeBtn === index ? "red" : null}
+                          title={session.Time}
+                        />
+                      </SafeAreaView>
+                    );
+                  }
+                })}
+              </View>
+              <Text>არჩეული დრო: {chosenTime}</Text>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
       )}
     </>
   );
