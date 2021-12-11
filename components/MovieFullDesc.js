@@ -8,7 +8,6 @@ import {
   ScrollView,
   Button,
   SafeAreaView,
-  FlatList,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Spinner from "../components/Spinner";
@@ -127,6 +126,15 @@ const MovieFullDesc = ({ navigation }) => {
               </View>
 
               <Text>არჩეული დრო: {chosenTime}</Text>
+            </View>
+            <View style={{ marginTop: 10 }}>
+              <Button
+                disabled={chosenTime ? false : true}
+                onPress={() =>
+                  navigation.navigate("Hall", { time: chosenTime })
+                }
+                title="Next"
+              />
             </View>
           </ScrollView>
         </SafeAreaView>
