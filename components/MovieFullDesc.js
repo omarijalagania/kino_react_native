@@ -88,36 +88,44 @@ const MovieFullDesc = ({ navigation }) => {
               <View
                 style={{
                   display: "flex",
-
+                  flexWrap: "wrap",
                   flexDirection: "row",
-                  justifyContent: "space-between",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
                   marginVertical: 20,
                 }}
               >
-                {sessionData.map((session, index) => {
-                  if (
-                    session.Date ===
-                    moment(startDate).utc().format("DD.MM.YYYY")
-                  ) {
-                    return (
-                      <SafeAreaView
-                        style={styles.btnContainer}
-                        key={session.Sessions_ID}
-                      >
-                        <Button
-                          onPress={activeBtnHandler.bind(
-                            null,
-                            index,
-                            session.Time
-                          )}
-                          color={activeBtn === index ? "red" : null}
-                          title={session.Time}
-                        />
-                      </SafeAreaView>
-                    );
-                  }
-                })}
+                {sessionData.Time !== "" ? (
+                  sessionData.map((session, index) => {
+                    if (
+                      session.Date ===
+                      moment(startDate).utc().local().format("DD.MM.YYYY")
+                    ) {
+                      return (
+                        <SafeAreaView
+                          style={styles.btnContainer}
+                          key={session.Sessions_ID}
+                        >
+                          <View style={styles.timeBtn}>
+                            <Button
+                              onPress={activeBtnHandler.bind(
+                                null,
+                                index,
+                                session.Time
+                              )}
+                              color={activeBtn === index ? "red" : null}
+                              title={session.Time}
+                            />
+                          </View>
+                        </SafeAreaView>
+                      );
+                    }
+                  })
+                ) : (
+                  <Text>No Movie</Text>
+                )}
               </View>
+
               <Text>არჩეული დრო: {chosenTime}</Text>
             </View>
           </ScrollView>
@@ -172,6 +180,10 @@ const styles = StyleSheet.create({
   },
   btnActive: {
     backgroundColor: "red",
+  },
+  timeBtn: {
+    flexShrink: 1,
+    width: 70,
   },
 });
 
