@@ -38,15 +38,29 @@ const MovieFullDesc = ({ navigation }) => {
     }
   };
 
+  // useEffect(() => {
+  //   activeBtn ? "" : setChosenTime("");
+  // }, [activeBtn, chosenTime]);
+
   const activeBtnHandler = (index, time) => {
     setActiveBtn(index);
     setChosenTime(time);
+    if (activeBtn === index) {
+      setActiveBtn("");
+      setChosenTime("");
+    }
   };
 
   useEffect(() => {
     apiCallPosters();
   }, []);
 
+  //Reset Time  when change calendar day
+  useEffect(() => {
+    setChosenTime("");
+  }, [startDate]);
+
+  //Get item from Navigation
   let item = navigation.getParam("item");
 
   return (
@@ -131,7 +145,10 @@ const MovieFullDesc = ({ navigation }) => {
               <Button
                 disabled={chosenTime ? false : true}
                 onPress={() =>
-                  navigation.navigate("Hall", { time: chosenTime })
+                  navigation.navigate("Hall", {
+                    time: chosenTime,
+                    date: startDate,
+                  })
                 }
                 title="Next"
               />
