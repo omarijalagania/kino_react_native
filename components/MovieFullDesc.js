@@ -38,10 +38,6 @@ const MovieFullDesc = ({ navigation }) => {
     }
   };
 
-  // useEffect(() => {
-  //   activeBtn ? "" : setChosenTime("");
-  // }, [activeBtn, chosenTime]);
-
   const activeBtnHandler = (index, time) => {
     setActiveBtn(index);
     setChosenTime(time);
