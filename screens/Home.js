@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Text, StyleSheet, ScrollView, View } from 'react-native';
-import axios from 'axios';
-import NowInCinema from '../components/NowInCinema';
-import ComingSoon from '../components/ComingSoon';
-import Premiere from '../components/Premiere';
-import Spinner from '../components/Spinner';
+import React, { useEffect, useState } from "react";
+import { Text, StyleSheet, ScrollView, View } from "react-native";
+import axios from "axios";
+import NowInCinema from "../components/NowInCinema";
+import ComingSoon from "../components/ComingSoon";
+import Premiere from "../components/Premiere";
+import Spinner from "../components/Spinner";
 const Home = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ const Home = ({ navigation }) => {
             <Text style={styles.movieSection}>Now in Cinema</Text>
             <NowInCinema data={data} navigation={navigation} />
             <Text style={styles.movieSectionSoon}>Coming Soon</Text>
-            <ComingSoon data={data} />
+            <ComingSoon data={data} navigation={navigation} />
           </View>
         </ScrollView>
       )}
@@ -55,24 +55,24 @@ const styles = StyleSheet.create({
     marginBottom: -20,
     paddingLeft: 15,
     fontSize: 23,
-    fontWeight: 'bold',
-    textAlign: 'left',
+    fontWeight: "bold",
+    textAlign: "left",
   },
   movieSectionSoon: {
     paddingTop: -30,
     marginBottom: 30,
     paddingLeft: 15,
     fontSize: 23,
-    fontWeight: 'bold',
-    textAlign: 'left',
+    fontWeight: "bold",
+    textAlign: "left",
   },
   movieSectionPremiere: {
     paddingTop: 40,
     paddingLeft: 15,
     marginBottom: 30,
     fontSize: 23,
-    fontWeight: 'bold',
-    textAlign: 'left',
+    fontWeight: "bold",
+    textAlign: "left",
   },
 });
 
