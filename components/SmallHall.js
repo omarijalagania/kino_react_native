@@ -1,248 +1,136 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
   StyleSheet,
-  Button,
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
 
-export class SmallHall extends Component {
-  render() {
-    return (
-      <SafeAreaView>
-        <View style={styles.hallContanier}>
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1A</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1B</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2A</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2B</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3A</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3B</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3C</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4A</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4B</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5A</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5B</Text>
-            </TouchableOpacity>
-          </View>
+const SmallHall = () => {
+  const [activeBtnS, setActiveBtnS] = useState([]);
 
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>7/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>6/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>5/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>4/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>3/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>2/8</Text>
-            </TouchableOpacity>
-          </View>
-          {/* ------ */}
-          <View style={styles.row}>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/1</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/4</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/5</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/6</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/7</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.chair}>
-              <Text>1/8</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+  const chairs = [
+    [
+      { place: "1A", row: "8" },
+      { place: "1B", row: "8" },
+      { place: "2A", row: "8" },
+      { place: "2B", row: "8" },
+      { place: "3A", row: "8" },
+      { place: "3B", row: "8" },
+      { place: "3C", row: "8" },
+      { place: "4A", row: "8" },
+      { place: "4B", row: "8" },
+      { place: "5A", row: "8" },
+      { place: "5B", row: "8" },
+    ],
+
+    [
+      { place: "1", row: "7" },
+      { place: "2", row: "7" },
+      { place: "3", row: "7" },
+      { place: "4", row: "7" },
+      { place: "5", row: "7" },
+      { place: "6", row: "7" },
+      { place: "7", row: "7" },
+      { place: "8", row: "7" },
+    ],
+    [
+      { place: "1", row: "6" },
+      { place: "2", row: "6" },
+      { place: "3", row: "6" },
+      { place: "4", row: "6" },
+      { place: "5", row: "6" },
+      { place: "6", row: "6" },
+      { place: "7", row: "6" },
+      { place: "8", row: "6" },
+    ],
+    [
+      { place: "1", row: "5" },
+      { place: "2", row: "5" },
+      { place: "3", row: "5" },
+      { place: "4", row: "5" },
+      { place: "5", row: "5" },
+      { place: "6", row: "5" },
+      { place: "7", row: "5" },
+      { place: "8", row: "5" },
+    ],
+    [
+      { place: "1", row: "4" },
+      { place: "2", row: "4" },
+      { place: "3", row: "4" },
+      { place: "4", row: "4" },
+      { place: "5", row: "4" },
+      { place: "6", row: "4" },
+      { place: "7", row: "4" },
+      { place: "8", row: "4" },
+    ],
+    [
+      { place: "1", row: "3" },
+      { place: "2", row: "3" },
+      { place: "3", row: "3" },
+      { place: "4", row: "3" },
+      { place: "5", row: "3" },
+      { place: "6", row: "3" },
+      { place: "7", row: "3" },
+      { place: "8", row: "3" },
+    ],
+    [
+      { place: "1", row: "2" },
+      { place: "2", row: "2" },
+      { place: "3", row: "2" },
+      { place: "4", row: "2" },
+      { place: "5", row: "2" },
+      { place: "6", row: "2" },
+      { place: "7", row: "2" },
+      { place: "8", row: "2" },
+    ],
+    [
+      { place: "1", row: "1" },
+      { place: "2", row: "1" },
+      { place: "3", row: "1" },
+      { place: "4", row: "1" },
+      { place: "5", row: "1" },
+      { place: "6", row: "1" },
+      { place: "7", row: "1" },
+      { place: "8", row: "1" },
+    ],
+  ];
+
+  const rowz = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+  const activeChair = (place, row) => {
+    setActiveBtnS({ place, row });
+    // if (activeBtnS === data) {
+    //   setActiveBtnS("");
+    // }
+    console.log(activeBtnS);
+  };
+
+  return (
+    <SafeAreaView>
+      <View style={styles.hallContanier}>
+        {rowz.map((row, index) => {
+          return (
+            <View style={styles.row}>
+              {chairs[index].map((chair) => {
+                return (
+                  <TouchableOpacity
+                    onPress={activeChair.bind(null, chair.place, chair.row)}
+                    key={Math.random(3) * 3}
+                    style={styles.chair}
+                  >
+                    <Text>{chair.place}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          );
+        })}
+      </View>
+    </SafeAreaView>
+  );
+};
 
 export default SmallHall;
 
@@ -266,5 +154,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "orange",
+  },
+  activeBtn: {
+    width: 30,
+    height: 30,
+    margin: 3,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    overflow: "hidden",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "blue",
   },
 });
