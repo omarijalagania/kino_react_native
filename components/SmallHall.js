@@ -7,9 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const SmallHall = () => {
-  const [activeBtnS, setActiveBtnS] = useState([]);
-
+const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
   const chairs = [
     [
       { place: "1A", row: "8" },
@@ -100,7 +98,10 @@ const SmallHall = () => {
   const rowz = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
   const activeChair = (place, row) => {
-    setActiveBtnS({ place, row });
+    // setActiveBtnS(...activeBtnS, { place, row });
+    let arr = [];
+    arr.push({ place, row });
+    setActiveBtnS(activeBtnS.concat({ place, row }));
     // if (activeBtnS === data) {
     //   setActiveBtnS("");
     // }
