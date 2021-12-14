@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
+  const [activeClass, setActiveClass] = useState([]);
   const chairs = [
     [
       { place: "1A", row: "8" },
@@ -98,14 +99,16 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
   const rowz = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
   const activeChair = (place, row) => {
-    // setActiveBtnS(...activeBtnS, { place, row });
     let arr = [];
     arr.push({ place, row });
     setActiveBtnS(activeBtnS.concat({ place, row }));
-    // if (activeBtnS === data) {
-    //   setActiveBtnS("");
-    // }
-    console.log(activeBtnS);
+    setActiveClass(activeBtnS.concat({ place, row }));
+    console.log(activeClass);
+    // activeBtnS.map((item) => {
+    //   if (item.place === place && item.row === row) {
+    //     console.log("duplicate");
+    //   }
+    // });
   };
 
   return (
@@ -113,13 +116,20 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
       <View style={styles.hallContanier}>
         {rowz.map((row, index) => {
           return (
-            <View style={styles.row}>
+            <View key={Math.random(2) * 2} style={styles.row}>
               {chairs[index].map((chair) => {
                 return (
                   <TouchableOpacity
                     onPress={activeChair.bind(null, chair.place, chair.row)}
                     key={Math.random(3) * 3}
-                    style={styles.chair}
+                    style={
+                      activeClass.map(
+                        (item) =>
+                          item.place !== chair.place || item.row !== chair.row
+                      )
+                        ? styles.activeBtn
+                        : styles.chair
+                    }
                   >
                     <Text>{chair.place}</Text>
                   </TouchableOpacity>

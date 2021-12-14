@@ -16,7 +16,11 @@ const Hall = ({ navigation }) => {
       <Text>{moment(chosenDate).utc().local().format("DD.MM.YYYY")}</Text>
       <Text>
         {activeBtnS.map((place) => {
-          return <Text>{`place ${place.place}, row ${place.row}, `}</Text>;
+          return (
+            <Text
+              key={Math.random(1) * 2}
+            >{`place ${place.place}, row ${place.row}, `}</Text>
+          );
         })}
       </Text>
       <SmallHall activeBtnS={activeBtnS} setActiveBtnS={setActiveBtnS} />
