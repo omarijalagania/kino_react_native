@@ -102,13 +102,19 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
     let arr = [];
     arr.push({ place, row });
     setActiveBtnS(activeBtnS.concat({ place, row }));
-    setActiveClass(activeBtnS.concat({ place, row }));
-    console.log(activeClass);
-    // activeBtnS.map((item) => {
-    //   if (item.place === place && item.row === row) {
-    //     console.log("duplicate");
+    // const removeDuplicates = activeBtnS.filter(
+    //   (item, index) => {
+    //     if (!uniqueChars.includes(element)) {
+    //       uniqueChars.push(element);
     //   }
-    // });
+    //   }
+    // );
+    // const noDuplicates = arr.filter(
+    //   (item, index, self) =>
+    //     index ===
+    //     self.findIndex((t) => t.place === item.place && t.row === item.row)
+    // );
+    // setActiveBtnS([...noDuplicates, arr]);
   };
 
   return (
@@ -122,14 +128,7 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
                   <TouchableOpacity
                     onPress={activeChair.bind(null, chair.place, chair.row)}
                     key={Math.random(3) * 3}
-                    style={
-                      activeClass.map(
-                        (item) =>
-                          item.place !== chair.place || item.row !== chair.row
-                      )
-                        ? styles.activeBtn
-                        : styles.chair
-                    }
+                    style={styles.chair}
                   >
                     <Text>{chair.place}</Text>
                   </TouchableOpacity>
