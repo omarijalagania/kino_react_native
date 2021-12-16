@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Spinner from "../components/Spinner";
-import Calendar from "./Calendar";
+import Calendar from "../components/Calendar";
 import axios from "axios";
 
 import moment from "moment";

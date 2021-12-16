@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 
-import SmallHall from "./SmallHall";
+import SmallHall from "../components/SmallHall";
 
 import moment from "moment";
 
