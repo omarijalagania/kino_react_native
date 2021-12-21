@@ -1,46 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Text, StyleSheet, ScrollView, View } from "react-native";
-import axios from "axios";
+
+import { useHttp } from "../hooks/http";
+
 import NowInCinema from "../components/NowInCinema";
 import ComingSoon from "../components/ComingSoon";
 import Premiere from "../components/Premiere";
 import Spinner from "../components/Spinner";
 const Home = ({ navigation }) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  //Custom Hook
+  const [isLoading, fetchedData] = useHttp(
+    "https://kinosakartvelo.ge/admin-panel/api/v1/posters",
+    []
+  );
 
-  //Api Request All movie data
-  const apiCall = async () => {
-    try {
-      setLoading(true);
-      const result = await axios(
-        `https://kinosakartvelo.ge/admin-panel/api/v1/posters`
-      );
-      setData(result.data.data);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
-  //call Api Request
-  useEffect(() => {
-    apiCall();
-  }, []);
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
-      {loading && <Spinner />}
-      {!loading && (
+      {fetchedData && (
         <ScrollView style={{ flexGrow: 1 }}>
           <View style={{ flexGrow: 1 }}>
             <Text style={styles.movieSectionPremiere}>Premieres</Text>
-            <Premiere data={data} navigation={navigation} />
+            <Premiere data={fetchedData} navigation={navigation} />
             <Text style={styles.movieSection}>Now in Cinema</Text>
-            <NowInCinema data={data} navigation={navigation} />
+            <NowInCinema data={fetchedData} navigation={navigation} />
             <Text style={styles.movieSectionSoon}>Coming Soon</Text>
-            <ComingSoon data={data} navigation={navigation} />
+            <ComingSoon data={fetchedData} navigation={navigation} />
           </View>
         </ScrollView>
       )}

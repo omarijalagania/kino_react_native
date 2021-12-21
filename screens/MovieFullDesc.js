@@ -164,7 +164,6 @@ const styles = StyleSheet.create({
     marginTop: -70,
     width: 400,
     height: 350,
-
     borderRadius: 5,
     resizeMode: "contain",
   },

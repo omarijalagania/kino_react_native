@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,9 +6,9 @@ import {
   Dimensions,
   TouchableOpacity,
   Platform,
-} from 'react-native';
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
-const { width: screenWidth } = Dimensions.get('window');
+} from "react-native";
+import Carousel, { ParallaxImage } from "react-native-snap-carousel";
+const { width: screenWidth } = Dimensions.get("window");
 
 const Premiere = ({ data, navigation }) => {
   const [entries, setEntries] = useState([]);
@@ -19,16 +19,17 @@ const Premiere = ({ data, navigation }) => {
   };
   useEffect(() => {
     //Premiere Filter
-    let filteredPremiere = data.filter(
-      (item) => item.movieStatus === 'premiera'
-    );
+    let filteredPremiere = data
+      ? data.filter((item) => item.movieStatus === "premiera")
+      : [];
     setEntries(filteredPremiere);
   }, []);
 
   const renderItem = ({ item, index }, parallaxProps) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('MovieFullDesc', { item: item })}>
+        onPress={() => navigation.navigate("MovieFullDesc", { item: item })}
+      >
         <View style={styles.item}>
           <ParallaxImage
             source={{
@@ -79,17 +80,17 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 8,
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   title: {
     marginTop: 10,
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 });
 
