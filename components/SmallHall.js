@@ -9,6 +9,7 @@ import {
 
 const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
   const [activeClass, setActiveClass] = useState([]);
+  const [occupied, setOccupied] = useState("");
   const chairs = [
     [
       { place: "1A", row: "8" },
@@ -98,13 +99,9 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
 
   const rowz = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
-  const activeChair = (place, row) => {
+  const activeChair = (id, place, row) => {
     setActiveBtnS(activeBtnS.concat({ place, row }));
-    activeBtnS.map((item) => {
-      if (item.place === place && item.row === row) {
-        setActiveClass();
-      }
-    });
+    setActiveClass([...activeClass, id]);
   };
 
   return (
@@ -113,17 +110,20 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
         {rowz.map((row, index) => {
           return (
             <View key={Math.random(2) * 2} style={styles.row}>
-              {chairs[index].map((chair) => {
+              {chairs[index].map((chair, index2) => {
+                const test = activeClass.filter(
+                  (item) => item === chair.place + chair.row
+                );
                 return (
                   <TouchableOpacity
                     onPress={activeChair.bind(
                       null,
-
+                      chair.place + chair.row,
                       chair.place,
                       chair.row
                     )}
                     key={Math.random(3) * 3}
-                    style={styles.chair}
+                    style={test[0] ? styles.activeBtn : styles.chair}
                   >
                     <Text>{chair.place}</Text>
                   </TouchableOpacity>
@@ -169,6 +169,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "blue",
+    backgroundColor: "red",
   },
 });

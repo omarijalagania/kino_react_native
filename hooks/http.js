@@ -12,7 +12,6 @@ export const useHttp = (url, dependency) => {
       .then((data) => {
         setFetchedData(data.data.data);
         setIsLoading(false);
-        console.log(data);
       })
       .catch((err) => {
         setIsLoading(false);
