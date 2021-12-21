@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { chairs } from "../halls/smallHallData";
+
 import {
   Text,
   View,
@@ -10,93 +13,8 @@ import {
 const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
   const [activeClass, setActiveClass] = useState([]);
   const [occupied, setOccupied] = useState("");
-  const chairs = [
-    [
-      { place: "1A", row: "8" },
-      { place: "1B", row: "8" },
-      { place: "2A", row: "8" },
-      { place: "2B", row: "8" },
-      { place: "3A", row: "8" },
-      { place: "3B", row: "8" },
-      { place: "3C", row: "8" },
-      { place: "4A", row: "8" },
-      { place: "4B", row: "8" },
-      { place: "5A", row: "8" },
-      { place: "5B", row: "8" },
-    ],
 
-    [
-      { place: "1", row: "7" },
-      { place: "2", row: "7" },
-      { place: "3", row: "7" },
-      { place: "4", row: "7" },
-      { place: "5", row: "7" },
-      { place: "6", row: "7" },
-      { place: "7", row: "7" },
-      { place: "8", row: "7" },
-    ],
-    [
-      { place: "1", row: "6" },
-      { place: "2", row: "6" },
-      { place: "3", row: "6" },
-      { place: "4", row: "6" },
-      { place: "5", row: "6" },
-      { place: "6", row: "6" },
-      { place: "7", row: "6" },
-      { place: "8", row: "6" },
-    ],
-    [
-      { place: "1", row: "5" },
-      { place: "2", row: "5" },
-      { place: "3", row: "5" },
-      { place: "4", row: "5" },
-      { place: "5", row: "5" },
-      { place: "6", row: "5" },
-      { place: "7", row: "5" },
-      { place: "8", row: "5" },
-    ],
-    [
-      { place: "1", row: "4" },
-      { place: "2", row: "4" },
-      { place: "3", row: "4" },
-      { place: "4", row: "4" },
-      { place: "5", row: "4" },
-      { place: "6", row: "4" },
-      { place: "7", row: "4" },
-      { place: "8", row: "4" },
-    ],
-    [
-      { place: "1", row: "3" },
-      { place: "2", row: "3" },
-      { place: "3", row: "3" },
-      { place: "4", row: "3" },
-      { place: "5", row: "3" },
-      { place: "6", row: "3" },
-      { place: "7", row: "3" },
-      { place: "8", row: "3" },
-    ],
-    [
-      { place: "1", row: "2" },
-      { place: "2", row: "2" },
-      { place: "3", row: "2" },
-      { place: "4", row: "2" },
-      { place: "5", row: "2" },
-      { place: "6", row: "2" },
-      { place: "7", row: "2" },
-      { place: "8", row: "2" },
-    ],
-    [
-      { place: "1", row: "1" },
-      { place: "2", row: "1" },
-      { place: "3", row: "1" },
-      { place: "4", row: "1" },
-      { place: "5", row: "1" },
-      { place: "6", row: "1" },
-      { place: "7", row: "1" },
-      { place: "8", row: "1" },
-    ],
-  ];
-
+  //number of rows in cinema
   const rowz = ["1", "2", "3", "4", "5", "6", "7", "8"];
 
   const activeChair = (id, place, row) => {
@@ -104,16 +22,28 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
     setActiveClass([...activeClass, id]);
   };
 
+  useEffect(() => {
+    rowz.map((item, index) => {
+      chairs[index].map((chair) => {
+        const seats = activeClass.filter(
+          (item) => item === chair.place + chair.row
+        );
+        console.log(seats);
+      });
+    });
+  }, [activeClass]);
+
   return (
     <SafeAreaView>
       <View style={styles.hallContanier}>
         {rowz.map((row, index) => {
           return (
             <View key={Math.random(2) * 2} style={styles.row}>
-              {chairs[index].map((chair, index2) => {
-                const test = activeClass.filter(
+              {chairs[index].map((chair) => {
+                const seats = activeClass.filter(
                   (item) => item === chair.place + chair.row
                 );
+
                 return (
                   <TouchableOpacity
                     onPress={activeChair.bind(
@@ -123,7 +53,7 @@ const SmallHall = ({ activeBtnS, setActiveBtnS }) => {
                       chair.row
                     )}
                     key={Math.random(3) * 3}
-                    style={test[0] ? styles.activeBtn : styles.chair}
+                    style={seats[0] ? styles.activeBtn : styles.chair}
                   >
                     <Text>{chair.place}</Text>
                   </TouchableOpacity>
