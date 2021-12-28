@@ -84,7 +84,7 @@ const MovieFullDesc = ({ navigation }) => {
                   {item.GEO.title.slice(0, 15)}...
                 </Text>
                 <Text style={styles.imdb}>
-                  <Ionicons name="play" size={32} color="orange" /> {item.IMDB}{" "}
+                  <Ionicons name="play" size={32} color="orange" /> {item.IMDB}
                   IMDB
                 </Text>
               </View>
